@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Security Best Practices</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-color: #1c1c1c;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      background-image: url('iot.jpg');
+      margin: 0;
+      padding: 0;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+
+    }
+
+    #navigation-drawer {
+      background-color: #111111;
+      color: #ffffff;
+      width: 250px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+      transition: transform 0.3s ease-in-out;
+      z-index: 1;
+      transform: translateX(-250px);
+    }
+
+    #navigation-drawer.open {
+      transform: translateX(0);
+    }
+
+    #navigation-drawer ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 20px;
+    }
+
+    #navigation-drawer ul li {
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    #toggle-button {
+      background-color: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    #toggle-button i {
+      margin-right: 5px;
+    }
+
+    main {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    #home-button {
+      background-color: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #content {
+      margin-top: 30px;
+    }
+
+    .topic {
+      margin-bottom: 20px;
+    }
+
+    .topic h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .sub-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .sub-topic {
+      background-color: #333333;
+      padding: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .sub-topic:hover {
+      background-color: #555555;
+    }
+
+    .sub-topic img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    .search-bar input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .search-bar input[type="submit"] {
+      background-color: #555555;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Home Screen */
+    #home-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #home-screen h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    #start-button {
+      background-color: #555555;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Search Results */
+    #search-results {
+      margin-top: 20px;
+    }
+
+    #search-results h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    #search-results .result {
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="navigation-drawer">
+    <ul>
+      <li class="sidebar-option">Asset Protection</li>
+      <li class="sidebar-option">Third-Party Management</li>
+      <li class="sidebar-option">Operation and Maintenance</li>
+      <li class="sidebar-option">Monitoring and Incident Management</li>
+    </ul>
+  </div>
+
+  <header>
+    <h1>IoT Security Best Practices</h1>
+    <button id="toggle-button">
+      <i class="fas fa-chevron-left"></i>
+      Hide Sidebar
+    </button>
+    <button id="home-button">
+      Home
+    </button>
+  </header>
+
+  <main>
+    <div id="home-screen">
+      <h1>Welcome to IoT Security Best Practices</h1>
+      <button id="start-button">Start</button>
+    </div>
+
+    <div id="content">
+      <div id="search-results"></div>
+    </div>
+  </main>
+
+  <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+  <script>
+    const navigationDrawer = document.getElementById('navigation-drawer');
+    const toggleButton = document.getElementById('toggle-button');
+    const homeButton = document.getElementById('home-button');
+    const homeScreen = document.getElementById('home-screen');
+    const startButton = document.getElementById('start-button');
+    const content = document.getElementById('content');
+    const searchResults = document.getElementById('search-results');
+
+    toggleButton.addEventListener('click', () => {
+      navigationDrawer.classList.toggle('open');
+      toggleButton.innerHTML = navigationDrawer.classList.contains('open') ? '<i class="fas fa-chevron-right"></i>Show Sidebar' : '<i class="fas fa-chevron-left"></i>Hide Sidebar';
+    });
+
+    homeButton.addEventListener('click', () => {
+      content.innerHTML = '';
+      homeScreen.style.display = 'flex';
+    });
+
+    startButton.addEventListener('click', () => {
+      homeScreen.style.display = 'none';
+    });
+
+    const sidebarOptions = document.querySelectorAll('.sidebar-option');
+
+    sidebarOptions.forEach((option) => {
+      option.addEventListener('click', () => {
+        const selectedOption = option.textContent;
+
+        // Simulate fetching and displaying content for the selected option
+        content.innerHTML = `
+          <h2>${selectedOption}</h2>
+          <div class="sub-topics">
+            <div class="sub-topic">
+              <img src="sec.jpg" alt="Physical Protection">
+              <p>Physical Protection</p>
+            </div>
+            <div class="sub-topic">
+              <img src="es.png" alt="Establishing & Maintaining Identities/Access Control">
+              <p>Establishing & Maintaining Identities/Access Control</p>
+            </div>
+            <div class="sub-topic">
+              <img src="cm.jpg" alt="Compliance Management">
+              <p>Compliance Management</p>
+            </div>
+            <div class="sub-topic">
+              <img src="vivi.jpg" alt="Data/Information Protection Model & Policy">
+              <p>Data/Information Protection Model & Policy</p>
+            </div>
+          </div>
+        `;
+
+        const subTopics = document.querySelectorAll('.sub-topic');
+
+        subTopics.forEach((subTopic) => {
+          subTopic.addEventListener('click', () => {
+            const selectedSubTopic = subTopic.querySelector('p').textContent;
+
+            // Simulate displaying the content for the selected sub-topic
+            content.innerHTML = `
+              <h2>${selectedSubTopic}</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            `;
+          });
+        });
+      });
+    });
+
+    const searchForm = document.createElement('form');
+    searchForm.className = 'search-bar';
+    searchForm.innerHTML = `
+      <input type="text" placeholder="Search...">
+      <input type="submit" value="Search">
+    `;
+
+    const searchInput = searchForm.querySelector('input[type="text"]');
+    const searchSubmit = searchForm.querySelector('input[type="submit"]');
+
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const searchTerm = searchInput.value;
+      performSearch(searchTerm);
+    });
+
+    function performSearch(term) {
+      // Simulate fetching search results
+      const results = ['Physical Protection', 'Establishing & Maintaining Identities/Access Control', 'Compliance Management', 'Data/Information Protection Model & Policy'];
+
+      searchResults.innerHTML = '';
+
+      results.forEach((result) => {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'result';
+        resultItem.textContent = result;
+
+        resultItem.addEventListener('click', () => {
+          // Simulate displaying the content for the selected search result
+          content.innerHTML = `
+            <h2>${result}</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          `;
+        });
+
+        searchResults.appendChild(resultItem);
+      });
+    }
+
+    content.appendChild(searchForm);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IoT Security Best Practices</title>
+  <style type="text/css">
+    body {
+      background-color: #F7F7F7;
+      font-family: Arial;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-bar {
+      background-color: #0072C6;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+      padding: 5px 10px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 30pt;
+      color: #0072C6;
+    }
+
+    .home-button {
+      background-color: #0072C6;
+      color: white;
+      padding: 0.5em;
+      border-radius: 0.3em;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    button {
+      background-color: #0072C6;
+      color: white;
+      padding: 0.5em;
+      border-radius: 0.3em;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    section {
+      margin-top: 20px;
+    }
+
+    h2 {
+      font-size: 24pt;
+      color: #0072C6;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    li a {
+      text-decoration: none;
+      color: #0072C6;
+    }
+
+    .topic-description {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #EAEAEA;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    footer p {
+      font-size: 12pt;
+      color: #0072C6;
+    }
+  </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      const homeButton = document.querySelector('.home-button');
+      homeButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      const topicsSectionButton = document.querySelector('.topics-section-button');
+      topicsSectionButton.addEventListener('click', () => {
+        const topicsSection = document.querySelector('#topics-section');
+        topicsSection.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      const topicLinks = document.querySelectorAll('.topic-link');
+      topicLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const topicId = link.getAttribute('href');
+          const topicDescription = document.querySelector(topicId);
+          topicDescription.style.display = 'block';
+          topicDescription.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="top-bar">
+    <a href="#" class="home-button">Home</a>
+    <a href="#topics-section" class="topics-section-button">Topics</a>
+  </div>
+  <div class="container">
+    <h1>IoT Security Best Practices</h1>
+
+    <p>Welcome to our Internet of Things (IoT) security best practices guide! This app provides SMEs' employees and the general public with reference for general safeguards on IoT devices.</p>
+
+    <button class="topics-section-button">Get Started</button>
+
+    <section id="topics-section">
+      <h2>Topics:</h2>
+
+      <ul>
+        <li>
+          <a href="#asset-protection-subsection" class="topic-link">Asset Protection</a>
+          <div id="asset-protection-subsection" class="topic-description">
+            <p>This section covers best practices for protecting the assets of your IoT devices, including physical security, authentication, and encryption.</p>
+          </div>
+        </li>
+        <li>
+          <a href="#third-party-management-subsection" class="topic-link">Third-Party Management</a>
+          <div id="third-party-management-subsection" class="topic-description">
+            <p>This section focuses on the security considerations when working with third-party vendors or service providers for your IoT infrastructure.</p>
+          </div>
+        </li>
+        <li>
+          <a href="#operation-and-maintenance-subsection" class="topic-link">Operation and Maintenance</a>
+          <div id="operation-and-maintenance-subsection" class="topic-description">
+            <p>Here, you'll find best practices for the ongoing operation and maintenance of your IoT devices, including software updates, configuration management, and access control.</p>
+          </div>
+        </li>
+        <li>
+          <a href="#monitoring-and-incident-management-subsection" class="topic-link">Monitoring and Incident Management</a>
+          <div id="monitoring-and-incident-management-subsection" class="topic-description">
+            <p>This section covers strategies for monitoring your IoT devices, detecting and responding to security incidents, and incident management.</p>
+          </div>
+        </li>
+      </ul>
+
+      <h2>Additional Requirements:</h2>
+      <p>This app can be used without an internet connection. Contents are fully downloaded upon app installation.</p>
+    </section>
+
+    <footer>
+      <p>Made by ChadAI &copy; 2021</p>
+    </footer>
+  </div>
+</body>
+
+</html>
